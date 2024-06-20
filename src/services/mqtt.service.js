@@ -24,15 +24,15 @@ mqttClient.once("connect", function () {
 
   mqttClient.on("message", async (topic, msg) => {
     const message = JSON.parse(msg.toString());
-    const { humidityAir, temperature } = message;
+    const {humidityAir, temperature, CO, pm25, so2, aqi_so2, aqi_CO,aqi_pm25,} = message;
 
-    await insertDataSensorDb({ humidityAir, temperature });
+    await insertDataSensorDb({ humidityAir, temperature, CO, pm25, so2, aqi_so2, aqi_CO,aqi_pm25 });
   });
 });
 
 mqttClient.on("error", function (error) {
   console.log("Unable to connect: " + error);
-  process.exit(1);
+  // process.exit(1);
 });
 
 module.exports = mqttClient;

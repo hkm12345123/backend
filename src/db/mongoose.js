@@ -3,7 +3,7 @@ const { db } = require('../config/index');
 
 // const uriString = `mongodb://${db.hostname}:${db.port}`;
 const uriString = `mongodb://iot:newpassword@171.251.89.96:8915/iot?directConnection=true`;
-console.log("Db name is ",db.name);
+// console.log("Db name is ",db.name);
 
 //singleton design pattern
 class Database {

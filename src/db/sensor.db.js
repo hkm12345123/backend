@@ -62,9 +62,9 @@ const getDataSensorDb = async (query) => {
 
 // Insert data
 const insertDataSensorDb = async (query) => {
-  const { humidityAir, temperature } = query;
+  const { humidityAir, temperature, CO, pm25, so2, aqi_so2, aqi_CO,aqi_pm25, } = query;
 
-  const rs = await new Sensor({ humidityAir, temperature }).save();
+  const rs = await new Sensor({ humidityAir, temperature, CO, pm25, so2, aqi_so2, aqi_CO,aqi_pm25, }).save();
   return rs;
 };
 

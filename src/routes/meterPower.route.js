@@ -8,7 +8,7 @@ const {
   // editMeterPower,
   getAllStatistics,
   getAllMonInYear,
-} = require("../app/controllers/MeterPower.controller");
+} = require("../app/controllers/meterPower.controller");
 
 //
 router.get("/MonthInYear/:year", authUser, asyncWrap(getAllMonInYear)); // get all month in year
