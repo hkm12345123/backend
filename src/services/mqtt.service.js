@@ -13,8 +13,8 @@ var mqttClient = mqtt.connect(connectUrl, {
   clientId,
   clean: true,
   connectTimeout: 4000,
-  username: "smart_home_2",
-  password: "123456",
+  //username: "smart_home_2",
+  //password: "123456",
   reconnectPeriod: 1000,
 });
 
