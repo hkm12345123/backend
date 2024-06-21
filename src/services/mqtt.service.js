@@ -3,8 +3,8 @@ const smart_home_hat = "smart_home_humidity_and_temperature";
 const smart_home_cd = "smart_home_control_device";
 const { insertDataSensorDb } = require("../db/sensor.db");
 
-const host_mqtt = "broker.hivemq.com";
-const port_mqtt = "1883";
+const host_mqtt = "mqttvht.innoway.vn";
+const port_mqtt = "8916";
 const clientId = `43e9e996-5823-4b43-bf06-aace43c3da0a`;
 const connectUrl = `mqtt://${host_mqtt}:${port_mqtt}`;
 
