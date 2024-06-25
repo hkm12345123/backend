@@ -19,6 +19,7 @@ const getSensor = async (req, res, next) => {
 // Get sensor
 const getSensorByRoom = async (req, res, next) => {
   roomId = req.params.roomId
+  // console.log(roomId)
   const sensor = await getSensorByRoomDb(roomId);
 
   return res

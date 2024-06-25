@@ -1,16 +1,14 @@
 require('dotenv').config();
 
-const emailUser = process.env.EMAIL_USER || 'user_name_for_email';
-const emailPassword = process.env.EMAIL_PASSWORD || 'password_for_email';
 
-const emailConfig = {
-  emailUser,
-  emailPassword,
-}
 const devConfig = {
   app: {
     port:process.env.DEV_PORT || 4000,
     hostname: process.env.DEV_HOST_NAME || "localhost",
+  },
+  emailCfg: {
+    emailUser: process.env.EMAIL_USER || 'trannamphuong0406@gmail.com',
+    emailPassword: process.env.EMAIL_PASSWORD || 'vppw gvhe macc nszr',
   },
   db: {
     port : process.env.DEV_DB_PORT || 27018,

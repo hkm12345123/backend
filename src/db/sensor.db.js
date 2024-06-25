@@ -13,9 +13,8 @@ const getSensorDb = async (query) => {
 // get data by room
 async function getSensorByRoomDb(roomId) {
   try {
-    const latestSensorData = await Sensor.findOne({ location: roomId })
-      .sort({ _id: -1 })  // Sort by createdDate in descending order to get the latest entry
-      .populate('location')       // Optionally populate the location field to get room details
+    const latestSensorData = await Sensor.findOne({ locationId: roomId })
+      .sort({ _id: -1 })  // Sort by createdDate in descending order to get the latest entry    
       .exec();
 
     // console.log(latestSensorData);

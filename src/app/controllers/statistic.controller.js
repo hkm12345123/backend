@@ -5,7 +5,8 @@ const ObjectId = require("mongoose").Types.ObjectId;
 const Sensor = require("../models/sensor.model");
 
 const getAverageDataForLast7Days = async (req, res) => {
-    const filter = req.params.filter
+    const filter = req.query.filter
+    // console.log(filter)
     const now = new Date();
     const sevenDaysAgo = new Date(now);
     sevenDaysAgo.setDate(now.getDate() - 6);
@@ -14,6 +15,7 @@ const getAverageDataForLast7Days = async (req, res) => {
         const result = await Sensor.aggregate([
             {
                 $match: {
+                    locationId: filter,
                     createdDate: {
                         $gte: sevenDaysAgo,
                         $lte: now,

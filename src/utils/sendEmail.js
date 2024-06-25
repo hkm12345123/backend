@@ -1,32 +1,32 @@
 const nodemailer = require('nodemailer');
-// const { emailConfig } = require('../config');
-// const { emailUser, emailPassword } = emailConfig;
+const { emailCfg, } = require('../config');
+const { emailUser, emailPassword } = emailCfg;
 
-// const transporter = nodemailer.createTransport({
-//     service: 'gmail',
-//     auth: {
-//       user: emailUser,
-//       pass: emailPassword,
-//     },
-//     tls: {
-//         rejectUnauthorized: false,
-//     }
-//   });
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
+    auth: {
+      user: emailUser,
+      pass: emailPassword,
+    },
+    tls: {
+        rejectUnauthorized: false,
+    }
+  });
 
-const sendEmail = async (to, subject, text, content) => {
-  //   return await transporter.sendMail({
-  //       from: emailUser,
-  //       to,
-  //       subject,
-  //       text,
-  //       html: `<b>${content}</b>`,
-  //   }, function(err, success){
-  //     if(err) {
-  //       console.log(err);
-  //     }else {
-  //       console.log("send email successfully");
-  //     }
-  // })
+const sendEmail = async (to, subject, text, htmlContent) => {
+    return await transporter.sendMail({
+        from: emailUser,
+        to,
+        subject,
+        text,
+        html: htmlContent,
+    }, function(err, success){
+      if(err) {
+        console.log(err);
+      }else {
+        console.log("send email successfully");
+      }
+  })
 };
 
-module.exports = { sendEmail };
+module.exports =  sendEmail ;
