@@ -97,23 +97,23 @@ mqttClient.once("connect", function () {
                                 </div>
                                 <div class="content">
                                     <h2>Kính gửi Quý Khách Hàng,</h2>
-                                    <p>Chúng tôi muốn thông báo cho bạn về tình trạng ô nhiễm không khí tại khu vực <b>${location}</b>. Dưới đây là các chỉ số trung bình:</p>
+                                    <p>Chúng tôi muốn thông báo cho bạn về tình trạng ô nhiễm không khí tại khu vực <b>${location}</b>. Dưới đây là các chỉ số :</p>
                                     <table>
                                         <tr>
                                             <th>Thời gian</th>
-                                            <th>Nhiệt Độ Trung Bình</th>
-                                            <th>Độ Ẩm Không Khí Trung Bình</th>
-                                            <th>Nồng Độ CO Trung Bình</th>
-                                            <th>Nồng Độ SO2 Trung Bình</th>
-                                            <th>Nồng Độ PM2.5 Trung Bình</th>
+                                            <th>Nhiệt Độ </th>
+                                            <th>Độ Ẩm Không Khí </th>
+                                            <th>AQI CO </th>
+                                            <th>AQI NO2 </th>
+                                            <th>AQI PM2.5 </th>
                                         </tr>
                                         <tr>
                                             <td>${now}</td>
-                                            <td>${temperature} °C</td>
-                                            <td>${humidityAir} %</td>
-                                            <td>${CO} µg/m³</td>
-                                            <td>${so2} µg/m³</td>
-                                            <td><b>${pm25} µg/m³</b></td>
+                                            <td>${temperature}</td>
+                                            <td>${humidityAir}</td>
+                                            <td>${aqi_CO}</td>
+                                            <td>${aqi_no2}</td>
+                                            <td><b>${aqi_pm25}</b></td>
                                         </tr>
                                         <!-- Thêm các hàng dữ liệu khác tại đây -->
                                     </table>
