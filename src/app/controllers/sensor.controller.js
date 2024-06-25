@@ -4,11 +4,22 @@ const {
   getSensorDb,
   getDataSensorDb,
   insertDataSensorDb,
+  getSensorByRoomDb
 } = require("../../db/sensor.db");
 
 // Get sensor
 const getSensor = async (req, res, next) => {
   const sensor = await getSensorDb();
+
+  return res
+    .status(200)
+    .json(apiResponse({ status: APIStatus.SUCCESS, data: { ...sensor } }));
+};
+
+// Get sensor
+const getSensorByRoom = async (req, res, next) => {
+  roomId = req.params.roomId
+  const sensor = await getSensorByRoomDb(roomId);
 
   return res
     .status(200)
@@ -79,4 +90,5 @@ module.exports = {
   getSensor,
   getDataSensor,
   insertDataSensor,
+  getSensorByRoom
 };

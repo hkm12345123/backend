@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-
+const Schema = mongoose.Schema;
 const sensorSchema = new mongoose.Schema(
   {
     humidityAir: {
@@ -24,7 +24,15 @@ const sensorSchema = new mongoose.Schema(
     },
     aqi_so2: {
       type: Number,
+      // required: true,
+    },
+    no2: {
+      type: Number,
       required: true,
+    },
+    aqi_no2: {
+      type: Number,
+      // required: true,
     },
     pm25: {
       type: Number,
@@ -33,6 +41,10 @@ const sensorSchema = new mongoose.Schema(
     aqi_pm25: {
       type: Number,
       required: true,
+    },
+    locationId: {
+      type: String,
+      ref: 'Room'
     },
     createdDate: {
       type: Date,

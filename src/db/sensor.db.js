@@ -10,6 +10,22 @@ const getSensorDb = async (query) => {
     sensors,
   };
 };
+// get data by room
+async function getSensorByRoomDb(roomId) {
+  try {
+    const latestSensorData = await Sensor.findOne({ location: roomId })
+      .sort({ _id: -1 })  // Sort by createdDate in descending order to get the latest entry
+      .populate('location')       // Optionally populate the location field to get room details
+      .exec();
+
+    // console.log(latestSensorData);
+    return {
+      latestSensorData
+    }
+  } catch (err) {
+    console.error('Error fetching latest sensor data:', err);
+  }
+}
 
 // get data from sensor
 const getDataSensorDb = async (query) => {
@@ -62,14 +78,36 @@ const getDataSensorDb = async (query) => {
 
 // Insert data
 const insertDataSensorDb = async (query) => {
-  const { humidityAir, temperature, CO, pm25, so2, aqi_so2, aqi_CO,aqi_pm25, } = query;
-
-  const rs = await new Sensor({ humidityAir, temperature, CO, pm25, so2, aqi_so2, aqi_CO,aqi_pm25, }).save();
-  return rs;
+  const { humidityAir, temperature, CO, pm25, so2, no2, aqi_so2, aqi_CO,aqi_pm25, aqi_no2, location} = query;
+  let locationId
+  switch (location) {
+    case "Toa Trung Tam":
+      locationId = "62616bb00aa850983c21b11b"
+      break;
+    case "San Van Dong":
+      locationId = "62616bcfadb8c6e0f01e49dc"
+      break;
+    case "Khu D":
+      locationId = "62618a2af73fe211513926c8"
+      break;
+    case "Khu E":
+      locationId = "62a9dc30092f09dc52362d94"
+        break;
+    default:
+      break;
+  }
+  try {
+    const rs = await new Sensor({ humidityAir, temperature, CO, pm25, so2, no2, aqi_so2, aqi_CO,aqi_pm25, aqi_no2, locationId }).save();
+    return rs;
+  } catch (err) {
+    console.log("Error when insert data from sensor")
+  }
+  
 };
 
 module.exports = {
   getSensorDb,
   getDataSensorDb,
   insertDataSensorDb,
+  getSensorByRoomDb
 };
