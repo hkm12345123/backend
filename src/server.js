@@ -65,7 +65,7 @@ app.use((err, req, res, next) => {
 //Connect to mongodb database
 db.connect();
 
-const scheduler = schedule.scheduleJob('28 0 * * *', report);
+const scheduler = schedule.scheduleJob('0 8 * * *', report);
 
 //Start an express server
 app.listen(port, () => console.log(`Server Started http://localhost:${port}`));
