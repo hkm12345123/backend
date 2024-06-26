@@ -104,9 +104,49 @@ const insertDataSensorDb = async (query) => {
   
 };
 
+const getAverageDataForToday = async () => {
+  const locationIds = ["62616bb00aa850983c21b11b","62616bcfadb8c6e0f01e49dc","62618a2af73fe211513926c8","62a9dc30092f09dc52362d94"];
+  const today = new Date();
+  today.setHours(0, 0, 0, 0); // Start of today
+  const tomorrow = new Date(today);
+  tomorrow.setDate(today.getDate() + 1); // Start of tomorrow
+
+  try {
+      const result = await Sensor.aggregate([
+          {
+              $match: {
+                  locationId: { $in: locationIds },
+                  createdDate: {
+                      $gte: today,
+                      $lt: tomorrow,
+                  },
+              },
+          },
+          {
+              $group: {
+                  _id: '$locationId',
+                  avgAqiPm25: { $avg: '$aqi_pm25' },
+              },
+          },
+          {
+              $project: {
+                  _id: 0,
+                  locationId: '$_id',
+                  avgAqiPm25: 1,
+              },
+          },
+      ]);
+
+      return  result.length > 0 ? result : {}
+  } catch (err) {
+      console.error('Error fetching data', err);
+  }
+};
+
 module.exports = {
   getSensorDb,
   getDataSensorDb,
   insertDataSensorDb,
-  getSensorByRoomDb
+  getSensorByRoomDb,
+  getAverageDataForToday
 };

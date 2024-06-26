@@ -7,6 +7,8 @@ const path = require("path");
 const apiResponse = require("./utils/apiResponse");
 const APIStatus = require("./constants/APIStatus");
 const db = require("./db/mongoose");
+const report = require("./services/report.service")
+const schedule = require('node-schedule');
 const cors = require("cors");
 const route = require("./routes");
 const { app:{port} } = require("./config");
@@ -62,6 +64,8 @@ app.use((err, req, res, next) => {
 
 //Connect to mongodb database
 db.connect();
+
+const scheduler = schedule.scheduleJob('28 0 * * *', report);
 
 //Start an express server
 app.listen(port, () => console.log(`Server Started http://localhost:${port}`));
