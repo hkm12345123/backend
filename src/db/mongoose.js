@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const { db } = require('../config/index');
 
 // const uriString = `mongodb://${db.hostname}:${db.port}`;
-const uriString = `mongodb://iot:newpassword@171.251.89.96:8915/iot?directConnection=true`;
+const uriString = `mongodb://minh:thanhanh08@103.186.65.188:27017/iot?authSource=admin`;
 // console.log("Db name is ",db.name);
 
 //singleton design pattern
