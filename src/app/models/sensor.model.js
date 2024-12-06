@@ -10,35 +10,7 @@ const sensorSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    CO: {
-      type: Number,
-      required: true,
-    },
-    aqi_CO: {
-      type: Number,
-      required: true,
-    },
-    so2: {
-      type: Number,
-      required: true,
-    },
-    aqi_so2: {
-      type: Number,
-      // required: true,
-    },
-    no2: {
-      type: Number,
-      required: true,
-    },
-    aqi_no2: {
-      type: Number,
-      // required: true,
-    },
     pm25: {
-      type: Number,
-      required: true,
-    },
-    aqi_pm25: {
       type: Number,
       required: true,
     },

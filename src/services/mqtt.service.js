@@ -1,10 +1,12 @@
 const mqtt = require("mqtt");
-const smart_home_hat = "smart_home_humidity_and_temperature";
+// const smart_home_hat = "smart_home_humidity_and_temperature";
+const smart_home_hat = "sensor_data/tandat/node1";
+
 const smart_home_cd = "smart_home_control_device";
 const { insertDataSensorDb } = require("../db/sensor.db");
 
-const host_mqtt = "mqttvht.innoway.vn";
-const port_mqtt = "8916";
+const host_mqtt = "broker.hivemq.com ";
+const port_mqtt = "1883";
 const clientId = `43e9e996-5823-4b43-bf06-aace43c3da0a`;
 const connectUrl = `mqtt://${host_mqtt}:${port_mqtt}`;
 
@@ -26,9 +28,10 @@ mqttClient.once("connect", function () {
 
   mqttClient.on("message", async (topic, msg) => {
     const message = JSON.parse(msg.toString());
-    const {humidityAir, temperature, CO, pm25, so2, no2, aqi_so2, aqi_CO,aqi_pm25, aqi_no2, location} = message;
+    console.log(message)
+    const {humidityAir, temperature, pm25, location} = message;
 
-    await insertDataSensorDb({ humidityAir, temperature, CO, pm25, so2, no2, aqi_so2, aqi_CO, aqi_pm25, aqi_no2, location});
+    await insertDataSensorDb({ humidityAir, temperature, pm25, location});
     
   });
 });

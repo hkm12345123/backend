@@ -77,26 +77,26 @@ const getDataSensorDb = async (query) => {
 
 // Insert data
 const insertDataSensorDb = async (query) => {
-  const { humidityAir, temperature, CO, pm25, so2, no2, aqi_so2, aqi_CO,aqi_pm25, aqi_no2, location} = query;
+  const { humidityAir, temperature, pm25, location} = query;
   let locationId
   switch (location) {
-    case "Toa Trung Tam":
+    case "1":
       locationId = "62616bb00aa850983c21b11b"
       break;
-    case "San Van Dong":
+    case "2":
       locationId = "62616bcfadb8c6e0f01e49dc"
       break;
-    case "Khu D":
+    case "3":
       locationId = "62618a2af73fe211513926c8"
       break;
-    case "Khu E":
+    case "4":
       locationId = "62a9dc30092f09dc52362d94"
         break;
     default:
       break;
   }
   try {
-    const rs = await new Sensor({ humidityAir, temperature, CO, pm25, so2, no2, aqi_so2, aqi_CO,aqi_pm25, aqi_no2, locationId }).save();
+    const rs = await new Sensor({ humidityAir, temperature, pm25, locationId }).save();
     return rs;
   } catch (err) {
     console.log("Error when insert data from sensor")

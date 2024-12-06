@@ -57,7 +57,7 @@ const route = (app) => {
   const token = 'ed4f76c28b8a0aba35abbfd1ab0769d3db6cb25f'; // Thay YOUR_WAQI_API_TOKEN bằng API token của bạn
 
   try {
-    const response = await axios.get(`https://api.waqi.info/feed/@A37081/`, {
+    const response = await axios.get(`https://api.waqi.info/feed/@13756/`, {
       params: {
         token: token
       }
