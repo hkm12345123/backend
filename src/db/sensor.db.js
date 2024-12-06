@@ -80,16 +80,16 @@ const insertDataSensorDb = async (query) => {
   const { humidityAir, temperature, pm25, location} = query;
   let locationId
   switch (location) {
-    case "1":
+    case 1:
       locationId = "62616bb00aa850983c21b11b"
       break;
-    case "2":
+    case 2:
       locationId = "62616bcfadb8c6e0f01e49dc"
       break;
-    case "3":
+    case 3:
       locationId = "62618a2af73fe211513926c8"
       break;
-    case "4":
+    case 4:
       locationId = "62a9dc30092f09dc52362d94"
         break;
     default:
