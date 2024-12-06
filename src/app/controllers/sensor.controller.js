@@ -4,7 +4,8 @@ const {
   getSensorDb,
   getDataSensorDb,
   insertDataSensorDb,
-  getSensorByRoomDb
+  getSensorByRoomDb,
+  getMq135ByRoomDb
 } = require("../../db/sensor.db");
 
 // Get sensor
@@ -16,6 +17,7 @@ const getSensor = async (req, res, next) => {
     .json(apiResponse({ status: APIStatus.SUCCESS, data: { ...sensor } }));
 };
 
+
 // Get sensor
 const getSensorByRoom = async (req, res, next) => {
   roomId = req.params.roomId
@@ -25,6 +27,16 @@ const getSensorByRoom = async (req, res, next) => {
   return res
     .status(200)
     .json(apiResponse({ status: APIStatus.SUCCESS, data: { ...sensor } }));
+};
+
+const getMq135ByRoom = async (req, res, next) => {
+  roomId = req.params.roomId
+  // console.log(roomId)
+  const mq135 = await getMq135ByRoomDb(roomId);
+
+  return res
+    .status(200)
+    .json(apiResponse({ status: APIStatus.SUCCESS, data: { ...mq135 } }));
 };
 
 // Get data sensor
@@ -91,5 +103,6 @@ module.exports = {
   getSensor,
   getDataSensor,
   insertDataSensor,
-  getSensorByRoom
+  getSensorByRoom,
+  getMq135ByRoom
 };
